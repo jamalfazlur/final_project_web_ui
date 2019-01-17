@@ -1,0 +1,41 @@
+@import url('https://fonts.googleapis.com/css?family=Kaushan+Script');
+
+.App {
+  text-align: center;
+}
+
+.myBody {
+  margin-top: 70px;
+}
+.myBody .list-group {
+  margin-top: 25px;
+}
+.navbar {
+  box-shadow: 0 1px 5px #007bff;
+}
+.navbar-brand {
+  font-family: 'Kaushan Script', cursive;
+}
+.card > a:hover{
+  box-shadow: 1px 1px 15px #007bff;
+}
+.list-group-item:hover {
+  background-color: #007bff;
+  color: #ffffff;
+  font-weight: 600
+}
+.myLogin > a {
+  color:#fff;
+}
+.myBody form {
+  box-shadow: 1px 1px 10px #007bff;
+}
+ 
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
