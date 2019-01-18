@@ -4,7 +4,7 @@ import CarouselKu from './CarouselKu';
 class HomeKu extends Component{
     render(){
         return(
-            <div className="container myBody">
+            <div className="container">
                 <div className="row">
                     <div className="col-lg-3">
                         <div className="list-group">
