@@ -30,7 +30,7 @@ class HeaderKu extends Component{
     render(){
         if (this.props.username === ""){ 
             return(
-                <div>
+                <div style={{marginBottom:"70px"}}>
                     <Navbar color="light" light expand="md" fixed="top">
                     <NavbarBrand href="/">Semalam Suntuk</NavbarBrand>
                     <NavbarToggler onClick={this.toggle} />
@@ -62,7 +62,7 @@ class HeaderKu extends Component{
             );
         }
         return(
-            <div>
+            <div style={{marginBottom:"70px"}}>
                 <Navbar color="light" light expand="md" fixed="top">
                 <NavbarBrand href="/">Semalam Suntuk</NavbarBrand>
                 <NavbarToggler onClick={this.toggle} />

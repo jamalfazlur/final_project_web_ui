@@ -36,6 +36,13 @@ class LoginKu extends Component {
         return <button type="button" className="btn btn-primary" onClick={this.onBtnLoginClick} style={{width:"300px"}} ><i className="fas fa-sign-in-alt" /> Login</button>
     }
 
+    renderOnKeyPress = (event) => {
+        if (event.key === 'Enter'){
+            // alert('Enter has been pressed')
+            this.onBtnLoginClick()
+        }
+    }
+
     render(){
         if(this.props.username === ""){ 
             return(
@@ -49,14 +56,14 @@ class LoginKu extends Component {
                             <div className="form-group row">
                                 <label className="col-sm-3 col-form-label">Username</label>
                                 <div className="col-sm-9">
-                                <input type="text" ref="username" className="form-control" id="inputEmail3" placeholder="Username" required autoFocus/>
+                                <input type="text" ref="username" className="form-control" id="inputEmail" placeholder="Username" required autoFocus/>
                                 </div>
                             </div>
 
                             <div className="form-group row">
                                 <label className="col-sm-3 col-form-label">Password</label>
                                 <div className="col-sm-9">
-                                <input type="password" ref="password" className="form-control" id="inputPassword3" placeholder="Password" required />
+                                <input type="password" ref="password" className="form-control" id="inputPassword" placeholder="Password" onKeyPress={this.renderOnKeyPress} required />
                                 </div>
                             </div>
                             
@@ -67,6 +74,7 @@ class LoginKu extends Component {
                                     
                             </div>
                             {this.renderError()}
+                            <div className="btn my-auto"><p>Don't have Account? <a className="border-bottom" href="/register" >Sign Up</a></p></div>
                         </fieldset>
                     </form>
                     

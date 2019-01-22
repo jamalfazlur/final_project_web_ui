@@ -53,7 +53,7 @@ export const onUserRegister = ({ username, email, phone, password}) => {
 
 export const keepLogin = (username) => {
     return (dispatch) => {
-        axios.get(`${KONEKSI}/users`, {
+        axios.post(`${KONEKSI}/users`, {
             param: {
                 username
             }
@@ -78,7 +78,7 @@ export const onUserLogin = ({ username, password }) => {
         
         dispatch({ type: AUTH_LOADING });
 
-        axios.get(`${KONEKSI}/users`, {
+        axios.post(`${KONEKSI}/auth/signin`, {
             params: {
                 username,
                 password

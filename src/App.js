@@ -26,7 +26,7 @@ class App extends Component {
       return (
         <div className="App">
           <HeaderKu />
-          <div className="container myBody border" style={{borderRadius: "5px"}}>
+          <div className="container myBody border bg-light" style={{borderRadius: "5px"}}>
             <Route exact path="/" component={HomeKu} />
             <Route path="/login" component={LoginKu} />
           </div>
