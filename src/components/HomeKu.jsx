@@ -23,7 +23,7 @@ class HomeKu extends Component{
                     <div className="row">
                         <div className="col-lg-4 col-md-6 mb-4">
                             <div className="card h-100">
-                            <a href="#"><img className="card-img-top" src="http://placehold.it/700x400" alt /></a>
+                            <a href="#"><img className="card-img-top" src="./images/flat/001-browser.png" width="140px" className="ml-auto" alt /></a>
                             <div className="card-body">
                                 <h4 className="card-title">
                                 <a href="#">Item One</a>
@@ -39,7 +39,7 @@ class HomeKu extends Component{
 
                         <div className="col-lg-4 col-md-6 mb-4">
                             <div className="card h-100">
-                            <a href="#"><img className="card-img-top" src="http://placehold.it/700x400" alt /></a>
+                            <a href="#"><img className="card-img-top" src="./images/flat/026-rating.png" width="140px" className="ml-auto" alt  /></a>
                             <div className="card-body">
                                 <h4 className="card-title">
                                 <a href="#">Item Two</a>

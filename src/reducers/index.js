@@ -5,7 +5,7 @@ import SelectProdukReducer from './SelectProdukReducer';
 import SelectHistoryReducer from './SelectHistoryReducer';
 
 export default combineReducers({ 
-    namaDiReducers : () => 'Jamal Fazlur',
+    // namaDiReducers : () => 'Jamal Fazlur',
     // username: AuthReducer
     auth: AuthReducer,
     selectedProduk: SelectProdukReducer,

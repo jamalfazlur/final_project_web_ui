@@ -3,7 +3,7 @@ import { Route, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Cookies from 'universal-cookie';
 
-import { keepLogin, cookieChecked } from './actions'
+import { keepLogin, cookieChecked, onUserLogin } from './actions'
 import './App.css';
 import HeaderKu from './components/HeaderKu';
 import HomeKu from './components/HomeKu';
@@ -15,8 +15,11 @@ class App extends Component {
 
   componentDidMount() {
       const username = cookies.get('myPengguna');
+      const password = cookies.get('myKey');
+      console.log(username,password);
       if(username !== undefined){
-          this.props.keepLogin(username);
+          //this.props.keepLogin({username, password});
+          this.props.onUserLogin({username, password});
       } else {
         this.props.cookieChecked();
       }
@@ -34,14 +37,19 @@ class App extends Component {
         </div>
       );
     }
-    return (  <div className="my-auto">
-                <div className="loader"></div>
-              </div>
+    return (  
+      <div className="App">
+        <HeaderKu />
+        <div className="row" style={{borderRadius: "5px"}}>
+          <div className="ml-auto mr-auto loader"></div>
+        </div>
+      </div>
     );
   }
 }
 
 const mapStateToProps = (state) => {
-  return { cookie: state.auth.cookie }
+  return { cookie: state.auth.cookie,
+          password: state.auth.password }
 }
-export default withRouter(connect(mapStateToProps, {keepLogin, cookieChecked})(App));
+export default withRouter(connect(mapStateToProps, {keepLogin, cookieChecked, onUserLogin})(App));

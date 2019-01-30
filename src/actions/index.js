@@ -51,16 +51,13 @@ export const onUserRegister = ({ username, email, phone, password}) => {
     }
 }
 
-export const keepLogin = (username) => {
+export const keepLogin = ({username, password}) => {
     return (dispatch) => {
-        axios.post(`${KONEKSI}/users`, {
-            param: {
-                username
-            }
-        }).then((res) => {
+        axios.post(`${KONEKSI}/signin/users`, {username, password}
+        ).then((res) => {
             dispatch({
                 type: USER_LOGIN_SUCCESS,
-                payload: {email: res.data[0].email, username}
+                payload: {email: res.data[0].email, username, password}
             })
         })
     }
@@ -78,16 +75,12 @@ export const onUserLogin = ({ username, password }) => {
         
         dispatch({ type: AUTH_LOADING });
 
-        axios.post(`${KONEKSI}/auth/signin`, {
-            params: {
-                username,
-                password
-            }
-        }).then((res) => {
+        axios.post(`${KONEKSI}/auth/signin`, { username, password}
+        ).then((res) => {
             console.log(res);
             
             if(res.data.length > 0){
-                dispatch({type: USER_LOGIN_SUCCESS, payload: {username, email: res.data[0].email}})
+                dispatch({type: USER_LOGIN_SUCCESS, payload: {username, email: res.data[0].email, password}})
             } else {
                 dispatch({type: AUTH_SYSTEM_ERROR, payload: 'Username or password invalid'})
             }

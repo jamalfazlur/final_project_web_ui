@@ -25,6 +25,7 @@ class HeaderKu extends Component{
     onLogoutClick = () => {
         this.props.onUserLogout();
         cookies.remove('myPengguna');
+        cookies.remove('myKey');
     }
 
     render(){

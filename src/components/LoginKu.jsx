@@ -12,6 +12,7 @@ class LoginKu extends Component {
     componentWillReceiveProps(newProps) {
         if(newProps.username !== '') {
             cookies.set('myPengguna', newProps.username, {path: '/'})
+            cookies.set('myKey', newProps.password, {path: '/'})
         }
     }
 
@@ -89,7 +90,8 @@ const mapStateToProps = (state) => {
     return { 
         username: state.auth.username, 
         error: state.auth.error, 
-        loading: state.auth.loading 
+        loading: state.auth.loading ,
+        password: state.auth.password
     };
 }
 
