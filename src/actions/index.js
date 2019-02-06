@@ -22,29 +22,21 @@ export const onUserRegister = ({ username, email, phone, password}) => {
         if(username === '' || email === '' || phone === '' || password === ''){
             dispatch({ type: AUTH_SYSTEM_ERROR, payload: 'Semua form di atas wajib diisi !'})
         } else {
-            axios.get(`${KONEKSI}/users`, {
-                params: {
-                    username
+         
+            axios.post(`${KONEKSI}/auth/register`, { 
+                username, email, password, phone 
+            }).then((res) => {
+                console.log(res);
+                if(res.data.status === 'error'){
+                    dispatch({type: AUTH_SYSTEM_ERROR, payload: res.data.message})
                 }
-            }).then((res) =>{
-                if(res.data.length === 0){
-                    axios.post(`${KONEKSI}/users`, { username, email, password, phone 
-                    }).then((res) => {
-                        console.log(res);
-                        dispatch({type: USER_LOGIN_SUCCESS, payload: {email, username}})
-                    }).catch((err)=> {
-                        console.log(err);
-                        dispatch({type: AUTH_SYSTEM_ERROR, payload: 'System Error'})
-                    })
-                } else {
-                    dispatch({type: AUTH_SYSTEM_ERROR, payload: 'Username has been taken !'})
-                }
-                 
-            }).catch((err) => {
+                else{
+                    dispatch({type: USER_LOGIN_SUCCESS, payload: res.data})
+                }                
+            }).catch((err)=> {
                 console.log(err);
                 dispatch({type: AUTH_SYSTEM_ERROR, payload: 'System Error'})
             })
-
             
         }
         
@@ -53,11 +45,12 @@ export const onUserRegister = ({ username, email, phone, password}) => {
 
 export const keepLogin = ({username, password}) => {
     return (dispatch) => {
-        axios.post(`${KONEKSI}/signin/users`, {username, password}
+        axios.post(`${KONEKSI}/auth/signin`, {username, password}
         ).then((res) => {
             dispatch({
                 type: USER_LOGIN_SUCCESS,
-                payload: {email: res.data[0].email, username, password}
+                payload: {username, password}
+                // di halaman /verify : email di atas masih bikin problem
             })
         })
     }
@@ -80,7 +73,7 @@ export const onUserLogin = ({ username, password }) => {
             console.log(res);
             
             if(res.data.length > 0){
-                dispatch({type: USER_LOGIN_SUCCESS, payload: {username, email: res.data[0].email, password}})
+                dispatch({type: USER_LOGIN_SUCCESS, payload: {username, email: res.data[0].email, password, role: res.data[0].role, status: res.data[0].status }})
             } else {
                 dispatch({type: AUTH_SYSTEM_ERROR, payload: 'Username or password invalid'})
             }
@@ -90,6 +83,13 @@ export const onUserLogin = ({ username, password }) => {
             dispatch({type: AUTH_SYSTEM_ERROR, payload: 'System Error'})
         })
         
+    }
+}
+
+export const onUserVerified = (userData) => {
+    return {
+        type: USER_LOGIN_SUCCESS,
+        payload: userData
     }
 }
 

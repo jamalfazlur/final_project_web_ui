@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 import Cookies from 'universal-cookie';
 import { Alert } from 'reactstrap';
 import { onUserLogin } from '../actions';
@@ -47,13 +47,13 @@ class LoginKu extends Component {
     render(){
         if(this.props.username === ""){ 
             return(
-            <div className="container myBody ">
-                <div className="row justify-content-sm-center ml-auto mr-auto">
+            <div className="container myBody " style={{minHeight:"600px"}}>
+                <div className="row justify-content-sm-center ml-auto mr-auto" >
                     
                     <form className="border mb-3" style={{padding:"20px", borderRadius:"5%"}} ref="formLogin">
                         <fieldset>
-                            <legend>Welcome!</legend>
-                            <hr />
+                            <legend><img src="./images/flat/007-advertising.png" width="60px"/><p>Nice To See You Again!</p></legend>
+                            
                             <div className="form-group row">
                                 <label className="col-sm-3 col-form-label">Username</label>
                                 <div className="col-sm-9">
@@ -75,7 +75,7 @@ class LoginKu extends Component {
                                     
                             </div>
                             {this.renderError()}
-                            <div className="btn my-auto"><p>Don't have Account? <a className="border-bottom" href="/register" >Sign Up</a></p></div>
+                            <div className="btn my-auto"><p>Don't have Account? <Link to="/register" className="border-bottom">Sign Up!</Link></p></div>
                         </fieldset>
                     </form>
                     

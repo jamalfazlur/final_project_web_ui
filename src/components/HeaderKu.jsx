@@ -31,12 +31,14 @@ class HeaderKu extends Component{
     render(){
         if (this.props.username === ""){ 
             return(
-                <div style={{marginBottom:"70px"}}>
+                <div style={{marginBottom:"100px"}}>
                     <Navbar color="light" light expand="md" fixed="top">
-                    <NavbarBrand href="/">Semalam Suntuk</NavbarBrand>
+                    <NavbarBrand href="/"><img src="./buku.png" alt="brand" width="100px" /></NavbarBrand>
                     <NavbarToggler onClick={this.toggle} />
                     <Collapse isOpen={this.state.isOpen} navbar>
                         <Nav className="ml-auto" navbar>
+                        
+                            
                             <NavItem>
                                 <NavLink href="/components/">Components</NavLink>
                             </NavItem>
@@ -63,9 +65,9 @@ class HeaderKu extends Component{
             );
         }
         return(
-            <div style={{marginBottom:"70px"}}>
+            <div style={{marginBottom:"100px"}}>
                 <Navbar color="light" light expand="md" fixed="top">
-                <NavbarBrand href="/">Semalam Suntuk</NavbarBrand>
+                <NavbarBrand href="/"><img src="./buku.png" alt="brand" width="100px" /></NavbarBrand>
                 <NavbarToggler onClick={this.toggle} />
                 <Collapse isOpen={this.state.isOpen} navbar>
                     <Nav className="ml-auto" navbar>

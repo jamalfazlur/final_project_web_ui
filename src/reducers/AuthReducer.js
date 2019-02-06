@@ -12,7 +12,14 @@ const INITIAL_STATE = { username: '' , error: '', loading: false, cookie: false,
 export default (state = INITIAL_STATE, action) => {
     switch(action.type) {
         case USER_LOGIN_SUCCESS :
-            return {...INITIAL_STATE, username: action.payload.username, email: action.payload.email, cookie: true, password: action.payload.password};
+            return {...INITIAL_STATE, 
+                        username: action.payload.username, 
+                        email: action.payload.email, 
+                        cookie: true, 
+                        password: action.payload.password, 
+                        status: action.payload.status,
+                        role: action.payload.role
+                    };
             
         case AUTH_SYSTEM_ERROR :
             return {...INITIAL_STATE, error: action.payload, cookie: true};

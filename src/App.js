@@ -8,6 +8,9 @@ import './App.css';
 import HeaderKu from './components/HeaderKu';
 import HomeKu from './components/HomeKu';
 import LoginKu from './components/LoginKu';
+import RegisterKu from './components/RegisterKu';
+import VerifiyWaitingKu from './components/VerifyWaitingKu';
+import VerifiedKu from './components/VerifiedKu';
 
 const cookies = new Cookies();
 
@@ -18,8 +21,8 @@ class App extends Component {
       const password = cookies.get('myKey');
       console.log(username,password);
       if(username !== undefined){
-          //this.props.keepLogin({username, password});
-          this.props.onUserLogin({username, password});
+          this.props.keepLogin({username, password});
+          //this.props.onUserLogin({username, password});
       } else {
         this.props.cookieChecked();
       }
@@ -32,6 +35,9 @@ class App extends Component {
           <div className="container myBody border bg-light" style={{borderRadius: "5px"}}>
             <Route exact path="/" component={HomeKu} />
             <Route path="/login" component={LoginKu} />
+            <Route path="/register" component={RegisterKu} />
+            <Route path="/verify" component={VerifiyWaitingKu} />
+            <Route path="/verified" component={VerifiedKu} />
           </div>
 
         </div>
