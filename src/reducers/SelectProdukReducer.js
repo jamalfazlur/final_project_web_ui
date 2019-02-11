@@ -3,7 +3,7 @@ import {
 } from '../actions/types';
 
 // const INITIAL_STATE = '';
-const INITIAL_STATE = {id: 0, merk: '', harga: 0, img: '', desc: ''};
+const INITIAL_STATE = {isbn: 0, judul: '', harga: 0, gambar: '', deskripsi: '', penulis: '', penerbit: ''};
 
 export default (state = INITIAL_STATE, action) => {
     switch(action.type) {

@@ -11,6 +11,7 @@ import LoginKu from './components/LoginKu';
 import RegisterKu from './components/RegisterKu';
 import VerifiyWaitingKu from './components/VerifyWaitingKu';
 import VerifiedKu from './components/VerifiedKu';
+import ProductDetailKu from './components/ProductDetailKu';
 
 const cookies = new Cookies();
 
@@ -32,12 +33,14 @@ class App extends Component {
       return (
         <div className="App">
           <HeaderKu />
-          <div className="container myBody border bg-light" style={{borderRadius: "5px"}}>
+          <div className="container-fluid myBody border bg-light" >
+          {/* style={{borderRadius: "5px"}} */}
             <Route exact path="/" component={HomeKu} />
             <Route path="/login" component={LoginKu} />
             <Route path="/register" component={RegisterKu} />
             <Route path="/verify" component={VerifiyWaitingKu} />
             <Route path="/verified" component={VerifiedKu} />
+            <Route path="/productdetail/:isbn" component={ProductDetailKu} />
           </div>
 
         </div>

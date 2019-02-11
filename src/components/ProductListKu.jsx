@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { connect } from 'react-redux'
+import { Redirect } from 'react-router-dom';
 import { KONEKSI } from '../support/config';
+import ProductItemKu from './ProductItemKu.jsx';
 
 class ProductListKu extends Component {
     state = { listProduk : [] };
@@ -13,28 +16,14 @@ class ProductListKu extends Component {
                 console.log(err);
             })
     }
+
     renderListProduct = () => {
-        var listJSX = this.state.listProduk.map((item) => {
-            const {judul, harga, penulis} = item;
+        var listJSX = this.state.listProduk.map((item) => {           
+            if(this.props.produk.isbn !== 0){
+                return <Redirect to={`/productdetail/${this.props.produk.isbn}`} />
+            }
             return(
-                <div className="col-lg-4 col-md-6 mb-4">
-                    <div className="card h-100">
-                        <a href="#" style={{textDecoration:"none"}}>
-                            <img className="card-img-top" src="./images/flat/001-browser.png" width="140px" className="ml-auto" alt="" />
-                            <div className="card-body" style={{minHeight: "130px", maxHeight:"150px",overflow:"hidden"}}>
-                                
-                                <h6 className="card-title"><a href="#" style={{textDecoration:"none"}}>{judul}</a></h6>
-                                <p>{penulis}</p>                            
-                            </div>
-                            <div className="card-footer">
-                                <p className="card-text">Rp. {harga.toLocaleString()}</p>
-                                <small className="text-muted">★ ★ ★ ★ ☆</small>
-                            </div>
-                        </a>
-                        
-                        
-                    </div>
-                </div>  
+                 <ProductItemKu produk={item}/> 
             );
         })
         return listJSX;
@@ -48,4 +37,10 @@ class ProductListKu extends Component {
     }
 }
 
-export default ProductListKu;
+const mapStateToProps = (state) => {
+    return { 
+        produk: state.selectedProduk
+    };
+}
+
+export default connect(mapStateToProps)(ProductListKu);

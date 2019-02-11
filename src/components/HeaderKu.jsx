@@ -31,9 +31,9 @@ class HeaderKu extends Component{
     render(){
         if (this.props.username === ""){ 
             return(
-                <div style={{marginBottom:"100px"}}>
+                <div style={{marginBottom:"90px"}}>
                     <Navbar color="light" light expand="md" fixed="top">
-                    <NavbarBrand href="/"><img src="./buku.png" alt="brand" width="100px" /></NavbarBrand>
+                    <NavbarBrand href="/"><img src="http://localhost:3000/buku.png" alt="brand" width="100px" /></NavbarBrand>
                     <NavbarToggler onClick={this.toggle} />
                     <Collapse isOpen={this.state.isOpen} navbar>
                         <Nav className="ml-auto" navbar>
@@ -65,9 +65,9 @@ class HeaderKu extends Component{
             );
         }
         return(
-            <div style={{marginBottom:"100px"}}>
+            <div style={{marginBottom:"90px"}}>
                 <Navbar color="light" light expand="md" fixed="top">
-                <NavbarBrand href="/"><img src="./buku.png" alt="brand" width="100px" /></NavbarBrand>
+                <NavbarBrand href="/"><img src="http://localhost:3000/buku.png" alt="brand" width="100px" /></NavbarBrand>
                 <NavbarToggler onClick={this.toggle} />
                 <Collapse isOpen={this.state.isOpen} navbar>
                     <Nav className="ml-auto" navbar>
@@ -77,7 +77,7 @@ class HeaderKu extends Component{
                         
                         <UncontrolledDropdown nav inNavbar>
                             <DropdownToggle nav caret>
-                                Hello, {this.props.username}
+                                Hello, <p className="text-capitalize" style={{display:"inline"}}>{this.props.username}</p>
                             </DropdownToggle>
                             <DropdownMenu right>
                                 <DropdownItem>Option 1</DropdownItem>
