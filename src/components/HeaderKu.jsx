@@ -38,25 +38,8 @@ class HeaderKu extends Component{
                     <Collapse isOpen={this.state.isOpen} navbar>
                         <Nav className="ml-auto" navbar>
                         
-                            
                             <NavItem>
-                                <NavLink href="/components/">Components</NavLink>
-                            </NavItem>
-                            
-                            <UncontrolledDropdown nav inNavbar>
-                                <DropdownToggle nav caret>
-                                    Options
-                                </DropdownToggle>
-                                <DropdownMenu right>
-                                    <DropdownItem>Option 1</DropdownItem>
-                                    <DropdownItem> Option 2</DropdownItem>
-                                    <DropdownItem divider />
-                                    <DropdownItem>Reset</DropdownItem>
-                                </DropdownMenu>
-                            </UncontrolledDropdown>
-
-                            <NavItem>
-                            <Link to="/login"><NavLink className="myLogin btn btn-default border-primary"><i className="fas fa-sign-in-alt" /> Login</NavLink></Link>
+                                <Link to="/login"><NavLink className="myLogin btn btn-default border-primary"><i className="fas fa-sign-in-alt" /> Login</NavLink></Link>
                             </NavItem>
                         </Nav>
                     </Collapse>
@@ -71,8 +54,11 @@ class HeaderKu extends Component{
                 <NavbarToggler onClick={this.toggle} />
                 <Collapse isOpen={this.state.isOpen} navbar>
                     <Nav className="ml-auto" navbar>
+                      
                         <NavItem>
-                            <NavLink href="/components/">Components</NavLink>
+                            <NavLink href="/components/" className="border-right">
+                                <i className="fas fa-shopping-cart"></i> Keranjang <span class="badge badge-danger rounded-circle ">2</span>
+                            </NavLink>
                         </NavItem>
                         
                         <UncontrolledDropdown nav inNavbar>
@@ -80,10 +66,12 @@ class HeaderKu extends Component{
                                 Hello, <p className="text-capitalize" style={{display:"inline"}}>{this.props.username}</p>
                             </DropdownToggle>
                             <DropdownMenu right>
-                                <DropdownItem>Option 1</DropdownItem>
-                                <DropdownItem> Option 2</DropdownItem>
+                                <DropdownItem><i className="fas fa-user text-primary"></i> Profile</DropdownItem>
+                                <DropdownItem><i className="fas fa-history text-primary"></i> History Belanja</DropdownItem>
                                 <DropdownItem divider />
-                                <DropdownItem onClick={this.onLogoutClick}><i className="fas fa-sign-out-alt"></i> Logout </DropdownItem>
+                                <DropdownItem onClick={this.onLogoutClick}>
+                                    <i className="fas fa-sign-out-alt text-danger"></i> Logout 
+                                </DropdownItem>
                             </DropdownMenu>
                         </UncontrolledDropdown>
 
