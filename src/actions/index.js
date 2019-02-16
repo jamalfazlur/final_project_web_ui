@@ -31,6 +31,7 @@ export const onUserRegister = ({ username, email, phone, password}) => {
                     dispatch({type: AUTH_SYSTEM_ERROR, payload: res.data.message})
                 }
                 else{
+                    console.log(res.data);
                     dispatch({type: USER_LOGIN_SUCCESS, payload: res.data})
                 }                
             }).catch((err)=> {
@@ -43,13 +44,14 @@ export const onUserRegister = ({ username, email, phone, password}) => {
     }
 }
 
-export const keepLogin = ({username, password}) => {
+export const keepLogin = (username) => {
     return (dispatch) => {
-        axios.post(`${KONEKSI}/auth/signin`, {username, password}
+        axios.post(`${KONEKSI}/auth/keeplogin`, {username}
         ).then((res) => {
+            console.log(res.data[0]);
             dispatch({
                 type: USER_LOGIN_SUCCESS,
-                payload: {username, password}
+                payload: res.data[0]
                 // di halaman /verify : email di atas masih bikin problem
             })
         })

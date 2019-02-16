@@ -12,7 +12,7 @@ class LoginKu extends Component {
     componentWillReceiveProps(newProps) {
         if(newProps.username !== '') {
             cookies.set('myPengguna', newProps.username, {path: '/'})
-            cookies.set('myKey', newProps.password, {path: '/'})
+            //cookies.set('myKey', newProps.password, {path: '/'})
         }
     }
 

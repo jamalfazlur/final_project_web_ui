@@ -12,6 +12,7 @@ import RegisterKu from './components/RegisterKu';
 import VerifiyWaitingKu from './components/VerifyWaitingKu';
 import VerifiedKu from './components/VerifiedKu';
 import ProductDetailKu from './components/ProductDetailKu';
+import KeranjangKu from './components/KeranjangKu';
 
 const cookies = new Cookies();
 
@@ -19,10 +20,10 @@ class App extends Component {
 
   componentDidMount() {
       const username = cookies.get('myPengguna');
-      const password = cookies.get('myKey');
-      console.log(username,password);
+      //const password = cookies.get('myKey');
+      console.log(username /*,password*/);
       if(username !== undefined){
-          this.props.keepLogin({username, password});
+          this.props.keepLogin(username);
           //this.props.onUserLogin({username, password});
       } else {
         this.props.cookieChecked();
@@ -41,6 +42,7 @@ class App extends Component {
             <Route path="/verify" component={VerifiyWaitingKu} />
             <Route path="/verified" component={VerifiedKu} />
             <Route path="/productdetail/:isbn" component={ProductDetailKu} />
+            <Route path="/cart" component={KeranjangKu} />
           </div>
 
         </div>
@@ -58,7 +60,6 @@ class App extends Component {
 }
 
 const mapStateToProps = (state) => {
-  return { cookie: state.auth.cookie,
-          password: state.auth.password }
+  return { cookie: state.auth.cookie }
 }
 export default withRouter(connect(mapStateToProps, {keepLogin, cookieChecked, onUserLogin})(App));

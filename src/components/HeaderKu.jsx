@@ -37,9 +37,20 @@ class HeaderKu extends Component{
                     <NavbarToggler onClick={this.toggle} />
                     <Collapse isOpen={this.state.isOpen} navbar>
                         <Nav className="ml-auto" navbar>
-                        
                             <NavItem>
-                                <Link to="/login"><NavLink className="myLogin btn btn-default border-primary"><i className="fas fa-sign-in-alt" /> Login</NavLink></Link>
+                               <div className="input-group border-right" style={{width:"350px"}}>
+                                    <input type="text" className="form-control" placeholder="Masukkan kata kunci ... " aria-label="Masukkan keyword judul, No.ISBN, atau Penulis" aria-describedby="button-addon2" />
+                                    <div className="input-group-append mr-2">
+                                        <button className="btn border-secondary" type="button" id="button-addon2"><i className="fas fa-search" /></button>
+                                    </div>
+                                </div> 
+                            </NavItem>
+                            
+                            <NavItem>
+                                <Link to="/register"><NavLink className="myLogin btn btn-default border-secondary mr-1" style={{fontSize:"14px"}}><i className="fas fa-user-plus" /> Daftar</NavLink></Link>
+                            </NavItem>
+                            <NavItem>
+                                <Link to="/login"><NavLink className="myLogin btn btn-default border-primary" style={{fontSize:"14px"}}><i className="fas fa-sign-in-alt" /> Masuk</NavLink></Link>
                             </NavItem>
                         </Nav>
                     </Collapse>
@@ -54,9 +65,16 @@ class HeaderKu extends Component{
                 <NavbarToggler onClick={this.toggle} />
                 <Collapse isOpen={this.state.isOpen} navbar>
                     <Nav className="ml-auto" navbar>
-                      
                         <NavItem>
-                            <NavLink href="/components/" className="border-right">
+                            <div className="input-group border-right" style={{width:"350px"}}>
+                                <input type="text" className="form-control" placeholder="Masukkan kata kunci ... " aria-label="Masukkan keyword judul, No.ISBN, atau Penulis" aria-describedby="button-addon2" />
+                                <div className="input-group-append mr-2">
+                                    <button className="btn border-secondary" type="button" id="button-addon2"><i className="fas fa-search" /></button>
+                                </div>
+                            </div> 
+                        </NavItem>
+                        <NavItem>
+                            <NavLink href="/cart" className="border-right">
                                 <i className="fas fa-shopping-cart"></i> Keranjang <span class="badge badge-danger rounded-circle ">2</span>
                             </NavLink>
                         </NavItem>
