@@ -23,6 +23,7 @@ class ProductDetailKu extends Component {
         const { isbn, judul, harga, berat } = this.props.produk;
         const { username } = this.props.user;
         var jumlah_beli = parseInt(this.refs.tbJumlah.value);
+        var total_berat = parseInt(berat * jumlah_beli);
         var total_harga = harga * jumlah_beli;
         console.log(username, isbn, judul, harga, berat, jumlah_beli, total_harga);
 
@@ -33,6 +34,7 @@ class ProductDetailKu extends Component {
             harga,
             berat,
             jumlah_beli,
+            total_berat,
             total_harga
         }).then((res) => {
             console.log(res);
