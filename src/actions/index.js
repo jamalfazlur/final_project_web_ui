@@ -7,7 +7,8 @@ import {
     LOGOUT,
     COOKIE_CHECKED,
     SELECT_PRODUK,
-    SELECT_HISTORY
+    SELECT_HISTORY,
+    CART_LOAD
 } from './types';
 import {KONEKSI} from '../support/config';
 
@@ -106,5 +107,12 @@ export const select_history = (selectedHistory) => {
     return {
         type: SELECT_HISTORY,
         payload: selectedHistory
+    }
+}
+
+export const loadOfCart = (load) => {
+    return {
+        type: CART_LOAD,
+        payload: load
     }
 }

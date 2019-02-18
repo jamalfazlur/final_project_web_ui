@@ -75,7 +75,7 @@ class HeaderKu extends Component{
                         </NavItem>
                         <NavItem>
                             <NavLink href="/cart" className="border-right">
-                                <i className="fas fa-shopping-cart"></i> Keranjang <span class="badge badge-danger rounded-circle ">2</span>
+                                <i className="fas fa-shopping-cart"></i> Keranjang 
                             </NavLink>
                         </NavItem>
                         

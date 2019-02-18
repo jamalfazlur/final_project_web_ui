@@ -3,6 +3,7 @@ import axios from 'axios';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { KONEKSI } from '../support/config';
+import { loadOfCart } from '../actions';
 
 class KeranjangKu extends Component {
     
@@ -13,32 +14,77 @@ class KeranjangKu extends Component {
 
     ringkasanBelanja = () => {
        
-        var totalBerat = 0;
-        var totalBayar = 0;
+        var totalBerat = 0, totalBayar = 0, totalBuku = 0;
 
         for(let i = 0; i < this.state.listProduk.length; i++){
             totalBerat += this.state.listProduk[i].total_berat;
             totalBayar += this.state.listProduk[i].total_harga;
+            totalBuku += this.state.listProduk[i].jumlah_beli;
         }
+        //const INITIAL_STATE = {total_bayar: 0, total_berat: 0, total_item: 0, total_buku: 0};
+        //this.props.loadOfCart({total_item: this.state.listProduk.length, total_bayar: totalBayar, total_berat: totalBerat, total_buku: totalBuku})
+
         return (
             <div>
                 <table className="table table-hover text-left">
                     <tr >
-                        <td>Total Item </td>
-                        <td>{this.state.listProduk.length}</td>
+                        <td><i class="fas fa-book"></i> Total Item </td>
+                        <td>{totalBuku}</td>
                     </tr>
                     <tr>
-                        <td>Total Berat</td>
-                        <td>{totalBerat} gr</td>
+                        <td><i class="fas fa-weight-hanging"></i> Total Berat</td>
+                        <td>{totalBerat/1000} Kg</td>
                     </tr>
                     <tr>
-                        <td>Total Bayar</td>
+                        <td><i class="fas fa-money-check-alt"></i> Total Bayar</td>
                         <td className="text-danger">Rp. {totalBayar.toLocaleString()}</td>
                     </tr>
                 </table>
-                <button className="btn btn-success col-lg-12">Checkout</button>
+                <button className="btn btn-success col-lg-12" onClick={() => {this.onCheckOutButton(totalBayar,totalBerat)}}>Checkout <i class="fas fa-arrow-alt-circle-right"></i></button>
             </div>
         );
+    }
+
+    onCheckOutButton = (total_bayar, total_berat) => {
+        const { username } = this.props.user;
+
+        axios.post(`${KONEKSI}/transaction/addtransaction`, {
+            username,
+            total_bayar,
+            total_berat
+        }).then((res) => {
+            console.log(res.data.insertId);
+            
+            for(let i = 0; i < this.state.listProduk.length; i++){
+                axios.post(`${KONEKSI}/transaction/adddetailtransaction`, {
+                    id_transaksi: res.data.insertId,
+                    username: this.props.user.username,
+                    isbn: this.state.listProduk[i].isbn,
+                    judul: this.state.listProduk[i].judul,
+                    harga: this.state.listProduk[i].harga,
+                    jumlah_beli: this.state.listProduk[i].jumlah_beli,
+                    total_harga: this.state.listProduk[i].total_harga
+                }).then((res1) => {
+                    console.log(res1)
+                }).catch((err1) => {
+                    console.log(err1)
+                }) 
+            }
+
+            // CART Clearance
+            axios.post(`${KONEKSI}/transaction/clearcart`, {
+                username
+            }).then((res) => {
+                console.log(res);
+                this.getListCart();
+            }).catch((err) => {
+                console.log(err);
+            })
+
+
+        }).catch((err) => {
+            console.log(err);
+        })
     }
 
     getListCart = () => {
@@ -125,6 +171,16 @@ class KeranjangKu extends Component {
     render() {
         if(this.props.user.username === "") {
             return <Redirect to="/" />
+        } 
+        if(this.state.listProduk.length === 0 ){ 
+            return(
+                <div className="container">
+                    <div className="alert alert-primary shadow">
+                        <img className="img img-responsive" width="140px" src="http://localhost:3000/images/flat/025-search.png" />
+                        <h4 className="text-warning">Keranjang Belanjamu Masih Kosong!</h4>
+                    </div>
+                </div>
+            );
         }
         return (
             <div className="container-fluid">
@@ -175,4 +231,4 @@ const mapStateToProps = (state) => {
     };
 }
 
-export default connect(mapStateToProps)(KeranjangKu);
+export default connect(mapStateToProps, { loadOfCart })(KeranjangKu);

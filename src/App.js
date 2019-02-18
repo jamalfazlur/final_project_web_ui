@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import { Route, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Cookies from 'universal-cookie';
+import axios from 'axios';
 
-import { keepLogin, cookieChecked, onUserLogin } from './actions'
+import { keepLogin, cookieChecked, onUserLogin, loadOfCart } from './actions'
 import './App.css';
 import HeaderKu from './components/HeaderKu';
 import HomeKu from './components/HomeKu';
@@ -13,27 +14,30 @@ import VerifiyWaitingKu from './components/VerifyWaitingKu';
 import VerifiedKu from './components/VerifiedKu';
 import ProductDetailKu from './components/ProductDetailKu';
 import KeranjangKu from './components/KeranjangKu';
+import { KONEKSI } from './support/config';
 
 const cookies = new Cookies();
 
 class App extends Component {
-
+  //state = { listProduk: [] }
+  
   componentDidMount() {
       const username = cookies.get('myPengguna');
-      //const password = cookies.get('myKey');
-      console.log(username /*,password*/);
+      console.log(username);
       if(username !== undefined){
           this.props.keepLogin(username);
-          //this.props.onUserLogin({username, password});
       } else {
         this.props.cookieChecked();
       }
+      
   }
+  
   render() {
     if(this.props.cookie){ 
       return (
         <div className="App">
           <HeaderKu />
+          
           <div className="container-fluid myBody border bg-light" >
           {/* style={{borderRadius: "5px"}} */}
             <Route exact path="/" component={HomeKu} />
@@ -59,7 +63,11 @@ class App extends Component {
   }
 }
 
+
+
 const mapStateToProps = (state) => {
-  return { cookie: state.auth.cookie }
+  return {  cookie: state.auth.cookie,
+            user: state.auth,
+            cart: state.loadOfCart }
 }
-export default withRouter(connect(mapStateToProps, {keepLogin, cookieChecked, onUserLogin})(App));
+export default withRouter(connect(mapStateToProps, {keepLogin, cookieChecked, onUserLogin, loadOfCart})(App));
