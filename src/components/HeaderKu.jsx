@@ -3,11 +3,12 @@ import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink, Un
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Cookies from 'universal-cookie';
-import { onUserLogout, keepLogin } from '../actions';
+import { onUserLogout, keepLogin, loadOfCart } from '../actions';
 
 const cookies = new Cookies();
 
 class HeaderKu extends Component{
+
     constructor(props) {
         super(props);
     
@@ -26,6 +27,14 @@ class HeaderKu extends Component{
         this.props.onUserLogout();
         cookies.remove('myPengguna');
         cookies.remove('myKey');
+    }
+
+    renderBadgeCart = () => {
+        if( this.props.load.total_item > 0 ) {
+            return (
+                <span class="badge badge-pill badge-danger">{this.props.load.total_item}</span>
+            );
+        }
     }
 
     render(){
@@ -75,7 +84,7 @@ class HeaderKu extends Component{
                         </NavItem>
                         <NavItem>
                             <NavLink href="/cart" className="border-right">
-                                <i className="fas fa-shopping-cart"></i> Keranjang 
+                                <i className="fas fa-shopping-cart"></i> Keranjang { this.renderBadgeCart() }
                             </NavLink>
                         </NavItem>
                         
@@ -103,8 +112,9 @@ class HeaderKu extends Component{
 
 const mapStateToProps = (state) => {
     return {
-        username: state.auth.username
+        username: state.auth.username,
+        load: state.loadOfCart
     }
 }
 
-export default connect(mapStateToProps, {onUserLogout, keepLogin})(HeaderKu);
+export default connect(mapStateToProps, {onUserLogout, keepLogin, loadOfCart})(HeaderKu);

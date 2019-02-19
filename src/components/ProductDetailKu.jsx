@@ -3,6 +3,7 @@ import axios from 'axios';
 import { connect } from 'react-redux'
 import { KONEKSI } from '../support/config';
 import { select_produk } from '../actions'
+import { loadOfCart } from '../actions';
 import BannerKu from './BannerKu';
 
 class ProductDetailKu extends Component {
@@ -39,6 +40,7 @@ class ProductDetailKu extends Component {
         }).then((res) => {
             console.log(res);
             alert(`Buku ${judul} \nberhasil ditambah ke cart sejumlah: ${jumlah_beli}`)
+            this.props.loadOfCart({username})
         }).catch((err) => {
             alert(err);
         })
@@ -129,8 +131,9 @@ class ProductDetailKu extends Component {
 const mapStateToProps = (state) => {
     return { 
         produk: state.selectedProduk,
-        user: state.auth
+        user: state.auth,
+        load: state.loadOfCart
     };
 }
 
-export default connect(mapStateToProps, { select_produk })(ProductDetailKu);
+export default connect(mapStateToProps, { select_produk, loadOfCart })(ProductDetailKu);

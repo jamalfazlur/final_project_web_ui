@@ -110,9 +110,15 @@ export const select_history = (selectedHistory) => {
     }
 }
 
-export const loadOfCart = (load) => {
-    return {
-        type: CART_LOAD,
-        payload: load
+export const loadOfCart = ({username}) => {
+    return (dispatch) => {
+        axios.post(`${KONEKSI}/transaction/countcart`, 
+            { username } 
+        ).then((res) => {
+            console.log(res.data)
+            dispatch({type: CART_LOAD, payload: res.data.count})
+        }).catch((err) => {
+            console.log(err);
+        })
     }
 }

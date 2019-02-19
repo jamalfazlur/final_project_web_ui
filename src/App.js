@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Route, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Cookies from 'universal-cookie';
-import axios from 'axios';
 
 import { keepLogin, cookieChecked, onUserLogin, loadOfCart } from './actions'
 import './App.css';
@@ -14,30 +13,27 @@ import VerifiyWaitingKu from './components/VerifyWaitingKu';
 import VerifiedKu from './components/VerifiedKu';
 import ProductDetailKu from './components/ProductDetailKu';
 import KeranjangKu from './components/KeranjangKu';
-import { KONEKSI } from './support/config';
 
 const cookies = new Cookies();
 
 class App extends Component {
-  //state = { listProduk: [] }
   
   componentDidMount() {
       const username = cookies.get('myPengguna');
-      console.log(username);
+      //console.log(username);
       if(username !== undefined){
           this.props.keepLogin(username);
+          this.props.loadOfCart({username});
       } else {
         this.props.cookieChecked();
       }
-      
   }
-  
+
   render() {
     if(this.props.cookie){ 
       return (
         <div className="App">
           <HeaderKu />
-          
           <div className="container-fluid myBody border bg-light" >
           {/* style={{borderRadius: "5px"}} */}
             <Route exact path="/" component={HomeKu} />

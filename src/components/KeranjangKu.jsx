@@ -21,37 +21,39 @@ class KeranjangKu extends Component {
             totalBayar += this.state.listProduk[i].total_harga;
             totalBuku += this.state.listProduk[i].jumlah_beli;
         }
-        //const INITIAL_STATE = {total_bayar: 0, total_berat: 0, total_item: 0, total_buku: 0};
-        //this.props.loadOfCart({total_item: this.state.listProduk.length, total_bayar: totalBayar, total_berat: totalBerat, total_buku: totalBuku})
-
+        
         return (
             <div>
                 <table className="table table-hover text-left">
-                    <tr >
-                        <td><i class="fas fa-book"></i> Total Item </td>
-                        <td>{totalBuku}</td>
-                    </tr>
-                    <tr>
-                        <td><i class="fas fa-weight-hanging"></i> Total Berat</td>
-                        <td>{totalBerat/1000} Kg</td>
-                    </tr>
-                    <tr>
-                        <td><i class="fas fa-money-check-alt"></i> Total Bayar</td>
-                        <td className="text-danger">Rp. {totalBayar.toLocaleString()}</td>
-                    </tr>
+                    <tbody>
+                        <tr >
+                            <td><i className="fas fa-book"></i> Total Item </td>
+                            <td>{totalBuku}</td>
+                        </tr>
+                        <tr>
+                            <td><i className="fas fa-weight-hanging"></i> Total Berat</td>
+                            <td>{totalBerat/1000} Kg</td>
+                        </tr>
+                        <tr>
+                            <td><i className="fas fa-money-check-alt"></i> Total Bayar</td>
+                            <td className="text-danger">Rp. {totalBayar.toLocaleString()}</td>
+                        </tr> 
+                    </tbody>
+
                 </table>
-                <button className="btn btn-success col-lg-12" onClick={() => {this.onCheckOutButton(totalBayar,totalBerat)}}>Checkout <i class="fas fa-arrow-alt-circle-right"></i></button>
+                <button className="btn btn-success col-lg-12" onClick={() => {this.onCheckOutButton(totalBayar,totalBerat)}}>Checkout <i className="fas fa-arrow-alt-circle-right"></i></button>
             </div>
         );
     }
 
     onCheckOutButton = (total_bayar, total_berat) => {
-        const { username } = this.props.user;
+        const { username, email } = this.props.user;
 
         axios.post(`${KONEKSI}/transaction/addtransaction`, {
             username,
             total_bayar,
-            total_berat
+            total_berat,
+            email
         }).then((res) => {
             console.log(res.data.insertId);
             
@@ -63,9 +65,12 @@ class KeranjangKu extends Component {
                     judul: this.state.listProduk[i].judul,
                     harga: this.state.listProduk[i].harga,
                     jumlah_beli: this.state.listProduk[i].jumlah_beli,
-                    total_harga: this.state.listProduk[i].total_harga
+                    total_harga: this.state.listProduk[i].total_harga,
+                    email,
+                    total_bayar
                 }).then((res1) => {
                     console.log(res1)
+                    this.props.loadOfCart({username});
                 }).catch((err1) => {
                     console.log(err1)
                 }) 
@@ -76,6 +81,8 @@ class KeranjangKu extends Component {
                 username
             }).then((res) => {
                 console.log(res);
+                //Redirect ke Halaman Konfirmasi Pembayaran
+                alert('Cek Email. Pindah ke Hal.Konfirm Pembayaran')
                 this.getListCart();
             }).catch((err) => {
                 console.log(err);
@@ -127,6 +134,7 @@ class KeranjangKu extends Component {
                 isbn: item.isbn
             }).then((res) => {
                 this.getListCart();
+                this.props.loadOfCart({username: this.props.user.username})
             }).catch((err) => {
                 console.log(err)
             })
@@ -139,28 +147,28 @@ class KeranjangKu extends Component {
         var listJSX = this.state.listProduk.map(item => {
             if(item.isbn !== this.state.selectedRow){
                 return (
-                    <tr className="text-wrap" style={{fontSize:'12px'}}>                        
+                    <tr key={item.isbn} className="text-wrap" style={{fontSize:'12px'}}>                        
                         <td>{<img src={srcgambar+item.gambar} width="60px" alt={item.judul} /> }</td>
                         <td className="align-middle">{item.judul}</td>
                         <td className="align-middle text-danger">Rp. {item.harga.toLocaleString()}</td>
                         <td className="align-middle">{item.berat} gr</td>
                         <td className="align-middle">{item.jumlah_beli}</td>
                         <td className="align-middle"> Rp. {item.total_harga.toLocaleString()}</td>
-                        <td className="align-middle"><button type="button" className="btn btn-warning" onClick={() => this.setState({selectedRow: item.isbn})}   ><i class="fas fa-edit"></i></button></td>
-                        <td className="align-middle"><button type="button" className="btn btn-danger" onClick={() => this.onBtnDeleteClick(item)} ><i class="fas fa-trash-alt"></i></button></td>
+                        <td className="align-middle"><button type="button" className="btn btn-warning" onClick={() => this.setState({selectedRow: item.isbn})}   ><i className="fas fa-edit"></i></button></td>
+                        <td className="align-middle"><button type="button" className="btn btn-danger" onClick={() => this.onBtnDeleteClick(item)} ><i className="fas fa-trash-alt"></i></button></td>
                     </tr>
                 )
             }
             return (
-                <tr className="text-wrap"  style={{fontSize:'12px'}}>                    
+                <tr key={item.isbn} className="text-wrap"  style={{fontSize:'12px'}}>                    
                     <td>{<img src={srcgambar+item.gambar} width="60px" alt={item.judul} /> }</td>
                     <td className="align-middle">{item.judul}</td>
                     <td className="align-middle text-danger">Rp. {item.harga.toLocaleString()}</td>
                     <td className="align-middle">{item.berat} gr</td>
                     <td className="align-middle"><input className="form-control col-lg-6 offset-lg-3" type="number" defaultValue={item.jumlah_beli} ref="jumlahEdit"/></td>
                     <td className="align-middle"> Rp. {item.total_harga.toLocaleString()}</td>
-                    <td className="align-middle"><button type="button" className="btn btn-primary" onClick={() => this.onBtnSaveClick(item)} ><i class="far fa-save"></i></button></td>
-                    <td className="align-middle"><button type="button" className="btn btn-default" onClick={() => this.setState({selectedRow: 0})} ><i class="fas fa-undo-alt"></i></button></td>
+                    <td className="align-middle"><button type="button" className="btn btn-primary" onClick={() => this.onBtnSaveClick(item)} ><i className="far fa-save"></i></button></td>
+                    <td className="align-middle"><button type="button" className="btn btn-default" onClick={() => this.setState({selectedRow: 0})} ><i className="fas fa-undo-alt"></i></button></td>
                 </tr>
             )
         })
@@ -227,7 +235,8 @@ class KeranjangKu extends Component {
 
 const mapStateToProps = (state) => {
     return { 
-        user: state.auth
+        user: state.auth,
+        load: state.loadOfCart
     };
 }
 
