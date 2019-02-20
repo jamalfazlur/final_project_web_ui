@@ -6,7 +6,7 @@ import ProductListKu from './ProductListKu';
 import BannerKu from './BannerKu';
 
 class HomeKu extends Component{
-    
+
     render(){
         const { username, status } = this.props.user;
         if( username !== "" && status === "Unverified") {

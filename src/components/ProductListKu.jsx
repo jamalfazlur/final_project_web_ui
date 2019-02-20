@@ -2,11 +2,12 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom';
+import Pagination from 'react-js-pagination';
 import { KONEKSI } from '../support/config';
 import ProductItemKu from './ProductItemKu.jsx';
 
 class ProductListKu extends Component {
-    state = { listProduk : [] };
+    state = { listProduk : [], activePage: 1, itemPerPage: 2  };
 
     componentDidMount() {
         axios.get(`${KONEKSI}/product/getproduct`)
@@ -15,6 +16,11 @@ class ProductListKu extends Component {
             }).catch((err) => {
                 console.log(err);
             })
+    }
+    
+    handlePageChange = (pageNumber) => {
+        console.log(`active page is ${pageNumber}`);
+        this.setState({activePage: pageNumber});
     }
 
     renderListProduct = () => {
@@ -30,9 +36,23 @@ class ProductListKu extends Component {
     }
     render() {
         return(
-            <div className="row">
-                {this.renderListProduct()}
+            <div>
+                <div className="row">
+                    {this.renderListProduct()}
+                </div>
+                
+                <div>
+                    <Pagination
+                        activePage={this.state.activePage}
+                        itemsCountPerPage={this.state.itemPerPage}
+                        totalItemsCount={this.state.listProduk.length}
+                        pageRangeDisplayed={5}
+                        onChange={this.handlePageChange}
+                    />
+                </div>
+
             </div>
+            
         );
     }
 }

@@ -83,9 +83,12 @@ class HeaderKu extends Component{
                             </div> 
                         </NavItem>
                         <NavItem>
-                            <NavLink href="/cart" className="border-right">
-                                <i className="fas fa-shopping-cart"></i> Keranjang { this.renderBadgeCart() }
-                            </NavLink>
+                            <Link to="/cart">
+                                <NavLink className="border-right">
+                                    <i className="fas fa-shopping-cart"></i> Keranjang { this.renderBadgeCart() }
+                                </NavLink>
+                            </Link>
+                            
                         </NavItem>
                         
                         <UncontrolledDropdown nav inNavbar>
@@ -95,6 +98,7 @@ class HeaderKu extends Component{
                             <DropdownMenu right>
                                 <DropdownItem><i className="fas fa-user text-primary"></i> Profile</DropdownItem>
                                 <DropdownItem><i className="fas fa-history text-primary"></i> History Belanja</DropdownItem>
+                                <DropdownItem><Link to="/confirmpayment"><i className="fas fa-money-check-alt text-primary"></i> Konfirmasi Bayar</Link> </DropdownItem>
                                 <DropdownItem divider />
                                 <DropdownItem onClick={this.onLogoutClick}>
                                     <i className="fas fa-sign-out-alt text-danger"></i> Logout 
