@@ -23,10 +23,29 @@ class HeaderKu extends Component{
        });
     }
 
+    renderLinkIsAdmin = () => {
+        if(this.props.role === "Admin"){
+            return(
+                <Link to="/admin/home">
+                    <NavLink className="border-right">
+                        <i class="fas fa-cogs"></i> Dashboard Admin { this.renderBadgeCart() }
+                    </NavLink>
+                </Link>
+            );
+        }
+        return(
+            <Link to="/cart">
+                <NavLink className="border-right">
+                    <i className="fas fa-shopping-cart"></i> Keranjang { this.renderBadgeCart() }
+                </NavLink>
+            </Link>
+        );
+    }
+
     onLogoutClick = () => {
         this.props.onUserLogout();
         cookies.remove('myPengguna');
-        cookies.remove('myKey');
+        //cookies.remove('myKey');
     }
 
     renderBadgeCart = () => {
@@ -82,13 +101,9 @@ class HeaderKu extends Component{
                                 </div>
                             </div> 
                         </NavItem>
+
                         <NavItem>
-                            <Link to="/cart">
-                                <NavLink className="border-right">
-                                    <i className="fas fa-shopping-cart"></i> Keranjang { this.renderBadgeCart() }
-                                </NavLink>
-                            </Link>
-                            
+                            {this.renderLinkIsAdmin()}                            
                         </NavItem>
                         
                         <UncontrolledDropdown nav inNavbar>
@@ -117,6 +132,7 @@ class HeaderKu extends Component{
 const mapStateToProps = (state) => {
     return {
         username: state.auth.username,
+        role: state.auth.role,
         load: state.loadOfCart
     }
 }

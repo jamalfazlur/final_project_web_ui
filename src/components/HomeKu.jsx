@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import CarouselKu from './CarouselKu';
 import ProductListKu from './ProductListKu';
-import BannerKu from './BannerKu';
 
 class HomeKu extends Component{
 
