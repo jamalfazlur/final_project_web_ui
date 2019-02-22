@@ -55,7 +55,7 @@ class ProductDetailKu extends Component {
 
     render() {
         const { isbn, judul, penulis, harga, jumlah_halaman, berat, deskripsi, gambar, penerbit } = this.props.produk;
-        const sumber = `http://localhost:3000/images/book/${gambar}`;
+        const sumber = `${KONEKSI}/${gambar}`;
 
         return(
             <div>

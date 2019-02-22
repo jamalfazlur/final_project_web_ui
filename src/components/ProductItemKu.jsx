@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux'
-import { select_produk } from '../actions'
+import { connect } from 'react-redux';
+import { select_produk } from '../actions';
+import { KONEKSI } from '../support/config';
 
 class ProductItemKu extends Component {
     
@@ -10,7 +11,7 @@ class ProductItemKu extends Component {
 
     render(){
         const {judul, harga, penulis, gambar} = this.props.produk;
-        var sumber = `./images/book/${gambar}`;
+        var sumber = `${KONEKSI}/${gambar}`;
 
         return (
             <div className="col-lg-3 col-md-4 mb-4" onClick={this.onItemClick}>

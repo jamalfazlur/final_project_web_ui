@@ -82,6 +82,7 @@ class ConfirmPaymentKu extends Component {
                 alert("Bukti Pembayaran Berhasil Diunggah!")
                 //this.setState({ brandList: res.data })
                 this.setState({message:"Bukti Pembayaran Berhasil Diunggah"})
+                this.getListPayment();
             })
             .catch((err) =>{
                 console.log(err)

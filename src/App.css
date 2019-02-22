@@ -6,14 +6,12 @@
 
 .myBody {
   min-height: 500px;
-  margin-top: 20px;
+  /*margin-top: 20px;*/
 }
-.myBody .list-group {
-  margin-top: 25px;
-}
+
 .navbar {
   box-shadow: 0 1px 5px #007bff;
-  margin-bottom: 70px;
+  
 }
 .navbar-brand {
   font-family: 'Kaushan Script', cursive;

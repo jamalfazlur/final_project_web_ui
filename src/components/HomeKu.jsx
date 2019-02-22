@@ -14,14 +14,11 @@ class HomeKu extends Component{
         return(
             <div className="container">
                 <div className="row">
-                    <div className="col-lg-3">
+                    <div className="col-lg-3 mt-4">
                         <div className="list-group mb-5">
                             <a href="#" className="list-group-item">Category 1</a>
                             <a href="#" className="list-group-item">Category 2</a>
                             <a href="#" className="list-group-item">Category 3</a>
-                        </div>
-                        <div className="card mt-3">
-                            {/* <BannerKu /> */}
                         </div>
                         
                     </div>
