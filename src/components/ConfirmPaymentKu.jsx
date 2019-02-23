@@ -83,6 +83,7 @@ class ConfirmPaymentKu extends Component {
                 //this.setState({ brandList: res.data })
                 this.setState({message:"Bukti Pembayaran Berhasil Diunggah"})
                 this.getListPayment();
+                this.refs.formPayment.reset();
             })
             .catch((err) =>{
                 console.log(err)
@@ -101,6 +102,7 @@ class ConfirmPaymentKu extends Component {
             this.setState({AddBrandImage: 'Unggah Bukti Pembayaran'})
         }
     }
+
 
     render() {
         if (this.props.user.username === ""){

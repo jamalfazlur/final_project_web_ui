@@ -61,7 +61,7 @@ class HeaderKu extends Component{
             return(
                 <div style={{marginBottom:"75px"}}>
                     <Navbar color="light" light expand="md" fixed="top">
-                    <NavbarBrand href="/"><img src="http://localhost:3000/buku1.png" alt="brand" width="130px" /></NavbarBrand>
+                    <NavbarBrand href="/"><img src="http://localhost:3000/buku3.png" alt="brand" width="90px" /></NavbarBrand>
                     <NavbarToggler onClick={this.toggle} />
                     <Collapse isOpen={this.state.isOpen} navbar>
                         <Nav className="ml-auto" navbar>
@@ -89,7 +89,7 @@ class HeaderKu extends Component{
         return(
             <div style={{marginBottom:"75px"}}>
                 <Navbar color="light" light expand="md" fixed="top">
-                <NavbarBrand href="/"><img src="http://localhost:3000/buku1.png" alt="brand" width="130px" /></NavbarBrand>
+                <NavbarBrand href="/"><img src="http://localhost:3000/buku3.png" alt="brand" width="90px" /></NavbarBrand>
                 <NavbarToggler onClick={this.toggle} />
                 <Collapse isOpen={this.state.isOpen} navbar>
                     <Nav className="ml-auto" navbar>

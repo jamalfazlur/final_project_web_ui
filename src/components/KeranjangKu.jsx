@@ -143,12 +143,12 @@ class KeranjangKu extends Component {
     }
 
     renderListJSX = () => {
-        var srcgambar = `http://localhost:3000/images/book/`;
+        //var srcgambar = `${KONEKSI}/images/book`;
         var listJSX = this.state.listProduk.map(item => {
             if(item.isbn !== this.state.selectedRow){
                 return (
                     <tr key={item.isbn} className="text-wrap" style={{fontSize:'12px'}}>                        
-                        <td>{<img src={srcgambar+item.gambar} width="60px" alt={item.judul} /> }</td>
+                        <td>{<img src={KONEKSI+item.gambar} width="60px" alt={item.judul} /> }</td>
                         <td className="align-middle">{item.judul}</td>
                         <td className="align-middle text-danger">Rp. {item.harga.toLocaleString()}</td>
                         <td className="align-middle">{item.berat} gr</td>
@@ -161,7 +161,7 @@ class KeranjangKu extends Component {
             }
             return (
                 <tr key={item.isbn} className="text-wrap"  style={{fontSize:'12px'}}>                    
-                    <td>{<img src={srcgambar+item.gambar} width="60px" alt={item.judul} /> }</td>
+                    <td>{<img src={KONEKSI+item.gambar} width="60px" alt={item.judul} /> }</td>
                     <td className="align-middle">{item.judul}</td>
                     <td className="align-middle text-danger">Rp. {item.harga.toLocaleString()}</td>
                     <td className="align-middle">{item.berat} gr</td>
