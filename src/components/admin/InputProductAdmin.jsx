@@ -40,6 +40,8 @@ class InputProductAdmin extends Component {
                 
                 alert("Buku & Gambar Berhasil Diunggah!")
                 console.log(res.data);
+                this.refs.formLeft.reset();
+                this.refs.formRight.reset(); 
                 //this.setState({ brandList: res.data })
                 //this.setState({message:"Bukti Pembayaran Berhasil Diunggah"})
                 //this.getListPayment();
@@ -61,7 +63,7 @@ class InputProductAdmin extends Component {
                 <div className="container-fluid">
                     <div className="row">
                         <SidebarAdmin />
-
+                        
                         <div className="col-md-10 bg-light pl-3 pt-3">
                                 <div className="alert alert-warning media col-12">
                                     <img className="img img-fluid" src="http://localhost:3000/images/flat/046-accounting-1.png" width="90px" />
@@ -71,8 +73,8 @@ class InputProductAdmin extends Component {
                                     </div>
                                 </div>
 
-                                <div className="row justify-content-sm-left mt-3 ml-1 text-left" >                            
-                                    <div className="col-md-6">                                        
+                                <div className="row justify-content-sm-left mt-3 ml-1 text-left" >
+                                    <form ref="formLeft" style={{boxShadow:"none"}} className="col-md-6">                                        
                                         <div className="form-group row">
                                             <label className="col-sm-3 col-form-label">No. ISBN</label>
                                             <div className="col-sm-9">
@@ -102,7 +104,7 @@ class InputProductAdmin extends Component {
                                         </div>
 
                                         <div className="form-group row">
-                                            <label className="col-sm-3 col-form-label">Jumlah Halaman</label>
+                                            <label className="col-sm-3 col-form-label">Halaman</label>
                                             <div className="col-sm-9">
                                                 <input type="number" ref="addJumlahHalaman" className="form-control" id="inputJumlahHalaman" placeholder="Jumlah Halaman" required />
                                             </div>
@@ -112,11 +114,10 @@ class InputProductAdmin extends Component {
                                             <div className="col-sm-9">
                                                 <textarea ref="addDeskripsi" className="form-control" id="inputDeskripsi" placeholder="Deskripsi Buku" rows="3" required />
                                             </div>
-                                        </div>
-                                    </div> {/* End Column Left */}
+                                        </div>                                        
+                                    </form>
                                     
-                                    <div className="col-md-6">
-                                        
+                                    <form ref="formRight" style={{boxShadow:"none"}} className="col-md-6">                                            
                                         <div className="form-group row">
                                             <label className="col-sm-3 col-form-label">Cover Buku</label>
                                             <div className="col-sm-9">
@@ -139,9 +140,8 @@ class InputProductAdmin extends Component {
                                             <div className="col-sm-9 offset-sm-3">
                                                 <button type="button" class="btn btn-success col-12" onClick={this.onBtnAddClick} ><i class="fas fa-file-upload"></i> Input Buku</button>
                                             </div>
-                                        </div>
-                                    </div>
-                                
+                                        </div>                                    
+                                    </form>
                                 </div>                            
                         </div>
                     </div>

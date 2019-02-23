@@ -28,7 +28,7 @@ class HeaderKu extends Component{
             return(
                 <Link to="/admin/home">
                     <NavLink className="border-right">
-                        <i class="fas fa-cogs"></i> Dashboard Admin { this.renderBadgeCart() }
+                        <i class="fas fa-cogs"></i> Dashboard Admin 
                     </NavLink>
                 </Link>
             );
