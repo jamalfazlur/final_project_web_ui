@@ -26,7 +26,7 @@ class ProductItemKu extends Component {
                                 <p className="card-title text-uppercase font-weight-bold" style={{fontSize:12}}>{judul}</p>
                             </div>                            
                             <p className="font-weight-lighter" style={{fontSize:12, margin:0}}>{penulis}</p> 
-                            <p className="font-weight-lighter" style={{fontSize:12, color:'#9e9e9e', margin:0}}>Rp. {harga.toLocaleString()}</p>
+                            <p className="font-weight-lighter text-success" style={{fontSize:12, color:'#9e9e9e', margin:0}}>Rp. {harga.toLocaleString()}</p>
                             <small className="text-muted" style={{fontSize:12, margin:0}}>★ ★ ★ ★ ☆</small>
                         </div>
                     </a>

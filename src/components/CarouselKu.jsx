@@ -9,19 +9,19 @@ import {
 
 const items = [
   {
-    src: '../images/slide01.jpg',
-    altText: 'Slide 1',
-    caption: 'Slide 1'
+    src: '../images/slide1.jpg',
+    altText: 'AdieMS',
+    caption: 'Perjalanan Hidup Sang Musisi'
   },
   {
-    src: '../images/slide02.jpg',
-    altText: 'Slide 2',
-    caption: 'Slide 2'
+    src: '../images/slide2.jpg',
+    altText: 'Anton Tanjung',
+    caption: 'Resep Sehat & Bahagia'
   },
   {
-    src: '../images/slide03.jpg',
-    altText: 'Slide 3',
-    caption: 'Slide 3'
+    src: '../images/slide3.jpg',
+    altText: 'Buku K-Pop',
+    caption: 'Diskon Buku K-Pop'
   }
 ];
 
@@ -72,7 +72,7 @@ class CarouselKu extends Component {
           key={item.src}
         >
           <img src={item.src} alt={item.altText} />
-          <CarouselCaption captionText={item.caption} captionHeader={item.caption} />
+          {/* <CarouselCaption captionText={item.caption} captionHeader={item.caption} /> */}
         </CarouselItem>
       );
     });

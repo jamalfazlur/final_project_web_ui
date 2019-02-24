@@ -17,6 +17,8 @@ import ConfirmPaymentKu from './components/ConfirmPaymentKu';
 import HomeAdmin from './components/admin/HomeAdmin';
 import InputProductAdmin from './components/admin/InputProductAdmin';
 import VerifyOrderAdmin from './components/admin/VerifyOrderAdmin';
+import HistoryBelanjaKu from './components/HistoryBelanjaKu';
+import CariBukuKu from './components/CariBukuKu';
 
 const cookies = new Cookies();
 
@@ -48,6 +50,8 @@ class App extends Component {
             <Route path="/productdetail/:isbn" component={ProductDetailKu} />
             <Route path="/cart" component={KeranjangKu} />
             <Route path="/confirmpayment" component={ConfirmPaymentKu} />
+            <Route path="/historytrx" component={HistoryBelanjaKu} />
+            <Route path="/searchbook" component={CariBukuKu} />
             <Route path="/admin/home" component={HomeAdmin} />
             <Route path="/admin/inputproduct" component={InputProductAdmin} />
             <Route path="/admin/verifyorder" component={VerifyOrderAdmin} />

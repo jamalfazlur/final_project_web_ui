@@ -48,8 +48,8 @@ class LoginKu extends Component {
     render(){
         if(this.props.username === ""){ 
             return(
-            <div className="container myBody " style={{minHeight:"600px"}}>
-                <div className="row justify-content-sm-center ml-auto mr-auto" >
+            <div className="container myBody" style={{minHeight:"600px"}}>
+                <div className="row justify-content-sm-center ml-auto mr-auto mt-3" >
                     
                     <form className="border mb-3" style={{padding:"20px", borderRadius:"5%"}} ref="formLogin">
                         <fieldset>

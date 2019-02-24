@@ -183,7 +183,7 @@ class KeranjangKu extends Component {
         if(this.state.listProduk.length === 0 ){ 
             return(
                 <div className="container">
-                    <div className="alert alert-primary shadow">
+                    <div className="alert alert-primary shadow mt-2">
                         <img className="img img-responsive" width="140px" src="http://localhost:3000/images/flat/025-search.png" />
                         <h4 className="text-warning">Keranjang Belanjamu Masih Kosong!</h4>
                     </div>

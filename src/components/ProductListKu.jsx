@@ -55,7 +55,7 @@ class ProductListKu extends Component {
                     {this.renderListProduct()}
                 </div>
                 
-                <div>
+                <div className="row justify-content-md-center">
                     {/* pagination */}
                     <nav aria-label="Page navigation example">
                         <ul className="pagination">

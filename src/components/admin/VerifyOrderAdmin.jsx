@@ -130,6 +130,8 @@ class VerifyOrderAdmin extends Component {
                 </div>
             );
         }
+
+        return <Redirect to="/" />
     }
 }
 
